@@ -7,7 +7,7 @@ To run this program:-
  2. Extract the zip file and type cmd in the address bar of folder and hit enter
  3. In cmd write ```python manage.py migrate```
  4. Then write ```python manage.py runserver```
- 5. control+click on ```127.000.000.1000``` server
+ 5. control+click on ```http://127.0.0.1:8000/``` server
 
 Login Credentials:-
 <br>
