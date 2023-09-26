@@ -1,0 +1,50 @@
+{% load humanize %}
+<style>
+    #uni_modal .modal-footer {
+        display: none;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            <dl>
+                <dt class="mdc-typography mdc-theme--primary">Employee ID/Code</dt>
+                <dd class="ps-3 fw-bolder">{{ employee.code }}</dd>
+                <dt class="mdc-typography mdc-theme--primary">Fullname</dt>
+                <dd class="ps-3 fw-bolder">{{ employee.firstname }} {{ employee.middlename }} {{ employee.lastname }}</dd>
+                <dt class="mdc-typography mdc-theme--primary">Gender</dt>
+                <dd class="ps-3 fw-bolder">{{ employee.gender }}</dd>
+                <dt class="mdc-typography mdc-theme--primary">Date of Birth</dt>
+                <dd class="ps-3 fw-bolder">{{ employee.dob|date:'M d, Y' }}</dd>
+                <dt class="mdc-typography mdc-theme--primary">Email</dt>
+                <dd class="ps-3 fw-bolder">{{ employee.email }}</dd>
+                <dt class="mdc-typography mdc-theme--primary">Contact #</dt>
+                <dd class="ps-3 fw-bolder">{{ employee.contact }}</dd>
+                <dt class="mdc-typography mdc-theme--primary">Address</dt>
+                <dd class="ps-3 fw-bolder">{{ employee.address }}</dd>
+            </dl>
+        </div>
+        <div class="col-sm-6">
+            <dl>
+                <dt class="mdc-typography mdc-theme--primary">Department</dt>
+                <dd class="ps-3 fw-bolder">{{ employee.department_id }}</dd>
+                <dt class="mdc-typography mdc-theme--primary">Position</dt>
+                <dd class="ps-3 fw-bolder">{{ employee.position_id }}</dd>
+                <dt class="mdc-typography mdc-theme--primary">Date Hired</dt>
+                <dd class="ps-3 fw-bolder">{{ employee.date_hired|date:'M d, Y' }}</dd>
+                <dt class="mdc-typography mdc-theme--primary">Salary</dt>
+                <dd class="ps-3 fw-bolder">{{ employee.salary|intcomma }}</dd>
+                <dt class="mdc-typography mdc-theme--primary">Status</dt>
+                <dd class="ps-3 fw-bolder">
+                    {% if employee.status == 1 %}
+                    <span class="badge bg-primary rounded-pill px-3">Active</span> {% else %}
+                    <span class="badge bg-secondary rounded-pill px-3">Inactive</span> {% endif %}
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="clear-fix py-3"></div>
+    <div class="d-flex w-100 align-items-center justify-content-end">
+        <button class="btn btn-default border btn-sm rounded-0 d-flex align-items-center" type="button" data-bs-dismiss="modal"><i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">close</i> Close</button>
+    </div>
+</div>

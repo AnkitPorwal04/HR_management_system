@@ -1,0 +1,58 @@
+{% extends "employee_information/base.html" %} {% load humanize %} {% block pageContent %}
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card">
+        <div class="d-flex justify-content-between">
+            <h4 class="card-title mb-0">Home Page</h4>
+        </div>
+    </div>
+</div>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <hr class="w-100">
+</div>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet">
+    <div class="mdc-card info-card info-card--success">
+        <div class="card-inner">
+            <h5 class="card-title">Departments</h5>
+            <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{ total_department|intcomma }}</h5>
+            <p class="tx-12 text-muted">Over All Count of Departments</p>
+            <div class="card-icon-wrapper">
+                <i class="material-icons">business</i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet">
+    <div class="mdc-card info-card info-card--primary">
+        <div class="card-inner">
+            <h5 class="card-title">Positions</h5>
+            <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{ total_position|intcomma }}</h5>
+            <p class="tx-12 text-muted">Over All Count of Positions</p>
+            <div class="card-icon-wrapper">
+                <i class="material-icons">list</i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet">
+    <div class="mdc-card info-card info-card--info">
+        <div class="card-inner">
+            <h5 class="card-title">Employees</h5>
+            <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{ total_employee|intcomma }}</h5>
+            <p class="tx-12 text-muted">Over All Count of Employees</p>
+            <div class="card-icon-wrapper">
+                <i class="material-icons">group</i>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <table style="width:100%">
+    {% for employee in employees %}
+    <tr>
+        <td width="20%">{{ employee.code }}</td>
+        <td width="30%">{{ employee.name }}</td>
+        <td width="20%">{{ employee.contact }}</td>
+        <td width="30%">{{ employee.address }}</td>
+    </tr>
+    {% endfor %}
+</table> -->
+{% endblock pageContent %}

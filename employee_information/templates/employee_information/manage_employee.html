@@ -1,0 +1,170 @@
+<div class="container-fluid">
+    <form action="" id="employee-form">
+        <input type="hidden" name="id" value="{% if employee.pk %}{{employee.pk}}{% endif %}">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label for="code" class="control-label">Employee ID/Code</label>
+                    <input type="text" name="code" id="code" class="form-control form-control-sm rounded-0" value="{% if employee.code %}{{employee.code}}{% endif %}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="firstname" class="control-label">First Name</label>
+                    <input type="text" name="firstname" id="firstname" class="form-control form-control-sm rounded-0" value="{% if employee.firstname %}{{employee.firstname}}{% endif %}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="middlename" class="control-label">Middle Name</label>
+                    <input type="text" name="middlename" id="middlename" class="form-control form-control-sm rounded-0" value="{% if employee.middlename %}{{employee.middlename}}{% endif %}">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="lastname" class="control-label">Last Name</label>
+                    <input type="text" name="lastname" id="lastname" class="form-control form-control-sm rounded-0" value="{% if employee.lastname %}{{employee.lastname}}{% endif %}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="gender" class="control-label">Gender</label>
+                    <select name="gender" id="gender" class="form-control form-control-sm rounded-0" required>
+                        {% if employee.gender and employee.gender == 'Male' %}
+                        <option selected>Male</option>
+                        {% else %}
+                        <option>Male</option>
+                        {% endif %}
+            
+                        {% if employee.gender and employee.gender == 'Female' %}
+                        <option selected>Female</option>
+                        {% else %}
+                        <option>Female</option>
+                        {% endif %}
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="dob" class="control-label">Birthday</label>
+                    <input type="date" name="dob" id="dob" class="form-control form-control-sm rounded-0" value="{% if employee.dob %}{{ employee.dob|date:'Y-m-d' }}{% endif %}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="email" class="control-label">Email</label>
+                    <input type="email" name="email" id="email" class="form-control form-control-sm rounded-0" value="{% if employee.email %}{{employee.email}}{% endif %}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="contact" class="control-label">Contact #</label>
+                    <input type="text" name="contact" id="contact" class="form-control form-control-sm rounded-0" value="{% if employee.contact %}{{employee.contact}}{% endif %}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="address" class="control-label">Address</label>
+                    <textarea rows="3" name="address" id="address" class="form-control form-control-sm rounded-0" required>{% if employee.address %}{{employee.address}}{% endif %}</textarea>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label for="department_id" class="control-label">Department</label>
+                    <select name="department_id" id="department_id" class="form-select form-select-sm rounded-0" required>
+                        {% if not employee.department_id %}
+                        <option value="1" disabled selected>Please Select Here</option>
+                        {% else %}
+                        <option value="1" disabled>Please Select Here</option>
+                        {% endif %}
+                        {% for department in departments %}
+                            {% if employee.department_id and employee.department_id == department.id %}
+                            <option value="{{ department.id }}" selected>{{ department.name }}</option>
+                            {% else %}
+                            <option value="{{ department.id }}">{{ department.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="position_id" class="control-label">Position</label>
+                    <select name="position_id" id="position_id" class="form-select form-select-sm rounded-0" required>
+                        {% if not employee.position_id %}
+                        <option value="1" disabled selected>Please Select Here</option>
+                        {% else %}
+                        <option value="1" disabled>Please Select Here</option>
+                        {% endif %}
+                        {% for position in positions %}
+                            {% if employee.position_id and employee.position_id == position.id %}
+                            <option value="{{ position.id }}" selected>{{ position.name }}</option>
+                            {% else %}
+                            <option value="{{ position.id }}">{{ position.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="date_hired" class="control-label">Date Hired</label>
+                    <input type="date" name="date_hired" id="date_hired" class="form-control form-control-sm rounded-0" value="{% if employee.date_hired %}{{ employee.date_hired|date:'Y-m-d' }}{% endif %}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="salary" class="control-label">Monthly Salary</label>
+                    <input type="number" step="any" name="salary" id="salary" class="form-control form-control-sm rounded-0" value="{% if employee.salary %}{{employee.salary}}{% endif %}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="status" class="control-label">Status</label>
+                    <select name="status" id="status" class="form-select form-select-sm rounded-0" required>
+                        {% if employee.status == 1 %}
+                        <option value="1" selected >Active</option>
+                        {% else %}
+                        <option value="1" >Active</option>
+                        {% endif %}
+            
+                        {% if employee.status == 0 %}
+                        <option value="0" selected>Inactive</option>
+                        {% else %}
+                        <option value="0">Inactive</option>
+                        {% endif %}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $(function() {
+        $('#employee-form').submit(function(e) {
+            e.preventDefault();
+            var _this = $(this)
+            $('.err-msg').remove();
+            var el = $('<div>')
+            el.addClass("alert alert-danger err-msg")
+            el.hide()
+            if (_this[0].checkValidity() == false) {
+                _this[0].reportValidity();
+                return false;
+            }
+            start_loader();
+            $.ajax({
+                headers: {
+                    "X-CSRFToken": '{{csrf_token}}'
+                },
+                url: "{% url 'save-employee-page' %}",
+                data: new FormData($(this)[0]),
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST',
+                dataType: 'json',
+                error: err => {
+                    console.log(err)
+                    alert_toast("An error occured", 'error');
+                    end_loader();
+                },
+                success: function(resp) {
+                    if (typeof resp == 'object' && resp.status == 'success') {
+                        el.removeClass("alert alert-danger err-msg")
+                        location.reload()
+                    } else if (resp.status == 'failed' && !!resp.msg) {
+                        el.text(resp.msg)
+                    } else {
+                        el.text("An error occured", 'error');
+                        end_loader();
+                        console.err(resp)
+                    }
+                    _this.prepend(el)
+                    el.show('slow')
+                    $("html, body, .modal").scrollTop(0);
+                    end_loader()
+                }
+            })
+        })
+    })
+</script>
