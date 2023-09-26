@@ -1,5 +1,7 @@
 # HR_management_system
 
+First of all install Django on your system by pasting this command in your cmd:-
+```pip install django``` 
 To run this program:-
  1. Download the zip file from code section.
  2. Extract the zip file and type cmd in the address bar of folder and hit enter
